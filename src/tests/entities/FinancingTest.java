@@ -112,4 +112,15 @@ public class FinancingTest {
         double result = financial.entry();
         Assertions.assertEquals(expectedValue, result);
     }
+
+    @Test
+    public void quotaShouldDisplayCorrectValue() {
+        double totalAmount = 100000.00;
+        double income = 2000.00;
+        Integer months = 80;
+        double expectedValue = 1000.00;
+        Financing financial = FinancingFactory.createFinancial(totalAmount, income, months);
+        double result = financial.quota();
+        Assertions.assertEquals(expectedValue, result);
+    }
 }
