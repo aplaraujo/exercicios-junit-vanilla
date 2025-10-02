@@ -28,4 +28,29 @@ public class FinancingTest {
             Financing financial = FinancingFactory.createFinancial(totalAmount, income, months);
         });
     }
+
+    @Test
+    public void setTotalAmountShouldUpdateTotalAmountWhenValidData() {
+        double totalAmount = 100000.00;
+        double income = 2000.00;
+        Integer months = 80;
+        double newTotalAmount = 90000.00;
+        Financing financial = FinancingFactory.createFinancial(totalAmount, income, months);
+        financial.setTotalAmount(newTotalAmount);
+        Assertions.assertEquals(newTotalAmount, financial.getTotalAmount());
+
+    }
+
+    @Test
+    public void setTotalAmountShouldThrowExceptionWhenInvalidData() {
+        double totalAmount = 100000.00;
+        double income = 2000.00;
+        Integer months = 20;
+        double newTotalAmount = 90000.00;
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Financing financial = FinancingFactory.createFinancial(totalAmount, income, months);
+            financial.setTotalAmount(newTotalAmount);
+        });
+    }
 }
