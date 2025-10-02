@@ -77,4 +77,28 @@ public class FinancingTest {
             financial.setIncome(newIncome);
         });
     }
+
+    @Test
+    public void setMonthsShouldUpdateMonthsWhenValidData() {
+        double totalAmount = 100000.00;
+        double income = 2000.00;
+        Integer months = 80;
+        int newMonthsQuantity = 90;
+        Financing financial = FinancingFactory.createFinancial(totalAmount, income, months);
+        financial.setMonths(newMonthsQuantity);
+        Assertions.assertEquals(newMonthsQuantity, financial.getMonths());
+    }
+
+    @Test
+    public void setMonthsShouldThrowExceptionWhenInvalidData() {
+        double totalAmount = 100000.00;
+        double income = 2000.00;
+        Integer months = 20;
+        int newMonthsQuantity = 90;
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Financing financial = FinancingFactory.createFinancial(totalAmount, income, months);
+            financial.setMonths(newMonthsQuantity);
+        });
+    }
 }
