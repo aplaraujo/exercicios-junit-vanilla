@@ -101,4 +101,15 @@ public class FinancingTest {
             financial.setMonths(newMonthsQuantity);
         });
     }
+
+    @Test
+    public void entryShouldDisplayCorrectValue() {
+        double totalAmount = 100000.00;
+        double income = 2000.00;
+        Integer months = 80;
+        double expectedValue = 20000.00;
+        Financing financial = FinancingFactory.createFinancial(totalAmount, income, months);
+        double result = financial.entry();
+        Assertions.assertEquals(expectedValue, result);
+    }
 }
